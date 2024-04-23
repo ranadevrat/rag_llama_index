@@ -9,6 +9,8 @@ from llama_index.core.node_parser import SentenceWindowNodeParser
 from llama_index.core.indices.postprocessor import MetadataReplacementPostProcessor
 from llama_index.core.indices.postprocessor import SentenceTransformerRerank
 from llama_index.core import load_index_from_storage
+#from gpt4all import GPT4All
+from langchain.llms import GPT4All
 
 
 def build_sentence_window_index(documents,llm, embed_model="local:BAAI/bge-small-en-v1.5",sentence_window_size=3,
@@ -56,7 +58,7 @@ from llama_index.core import SimpleDirectoryReader
 #OpenAI.api_key =  key
 
 documents = SimpleDirectoryReader(
-    input_files=[r"data\doc_rag.txt"]
+    input_files=[r"data/eBook-How-to-Build-a-Career-in-AI.pdf"]
 ).load_data()
 
 from llama_index.core import Document
@@ -65,7 +67,9 @@ document = Document(text="\n\n".join([doc.text for doc in documents]))
 
 index = build_sentence_window_index(
     [document],
-    llm=OpenAI(model="gpt-3.5-turbo", temperature=0.1,api_key=key),
+    #llm=OpenAI(model="gpt-3.5-turbo", temperature=0.1,api_key=key),
+    #llm = GPT4All("mistral-7b-openorca.gguf2.Q4_0.gguf"),
+    llm = GPT4All(model=r'C:\Users\91941\.cache\gpt4all\mistral-7b-openorca.gguf2.Q4_0.gguf'), #Replace this path with your model path
     save_dir="./sentence_index",
 )
 
@@ -92,5 +96,5 @@ def chat():
     return jsonify({'response': str(bot_message)})
 
 if __name__ == '__main__':
-    #app.run()
-    app.run(debug=True)
+    app.run()
+    #app.run(debug=True)
