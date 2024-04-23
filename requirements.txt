@@ -4,3 +4,4 @@ langchain_community==0.0.33
 langchain_core==0.1.44
 llama_index==0.10.30
 openai==1.23.1
+llama-index-llms-langchain
