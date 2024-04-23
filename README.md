@@ -28,8 +28,8 @@ index = build_sentence_window_index(
     save_dir="./sentence_index",
 )
 ```
-1. if you want to use OpenAI LLM then uncomment code line 70
-2. if you want to use opensour LLM mistral through gpt4all
+1. if you want to use OpenAI LLM then uncomment code line 70 and comment 72 line
+2. if you want to use opensource LLM mistral 7b through gpt4all
   Run below python file to download gpt4all model locally
 ```python
 Python download_gpt4all_model.py
